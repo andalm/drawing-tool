@@ -12,18 +12,18 @@ use CanvasProvider;
 class File
 {
 
-	private function __construct() {}
+  private function __construct() {}
 
-	public static function getContent()
-	{
-	}
+  public static function getContent()
+  {
+  }
 
-	/**
-	 *
-	 * @param canvas
-	 */
-	public static function setContent(Canvas $canvas)
-	{
-	}
+  /**
+   *
+   * @param canvas
+   */
+  public static function setContent(Canvas $canvas)
+  {
+  }
 
 }
