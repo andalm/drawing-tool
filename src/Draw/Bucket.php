@@ -12,16 +12,14 @@ use DrawingTool\Shape\Bucket as FillBucket;
  */
 class Bucket implements IDrawable
 {
-  private $canvas;
   private $fill;
 
-  function __construct(FillBucket $fill, Canvas &$canvas)
+  function __construct(FillBucket $fill)
   {
     $this->fill = $fill;
-    $this->canvas = $canvas;
   }
 
-  public function draw()
+  public function draw(Canvas $canvas)
   {
     echo "drawing";
   }

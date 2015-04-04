@@ -5,11 +5,13 @@ use DrawingTool\CanvasProvider\Canvas;
 class CanvasTest extends PHPUnit_Framework_TestCase
 {
   private $canvas;
+  const WIDTH = 50;
+  const HEIGHT = 10;
 
   public function __construct()
   {
     parent::__construct();
-    $this->canvas = Canvas::get(2, 3);
+    $this->canvas = Canvas::get(self::WIDTH, self::HEIGHT);
   }
 
   public function testCreatedCanvas()
@@ -22,19 +24,35 @@ class CanvasTest extends PHPUnit_Framework_TestCase
     $this->assertInternalType('array', $this->canvas->getContent());
   }
 
-  public function testSetContent()
-  {
-    $this->canvas->setContent([]);
-    $this->assertTrue(true);
-  }
-
   public function testGetContentByPoint()
   {
-    //TODO: make test...
+    $this->assertEquals($this->canvas->getContentByPixel(10,5), ' ');
   }
 
-  public function testPrintCanvas()
+  public function testPrint()
   {
-    //TODO: make test...
+    $expected = "----------------------------------------------------\n" .
+                "|                                                  |\n" .
+                "|                                                  |\n" .
+                "|                                                  |\n" .
+                "|                                                  |\n" .
+                "|                                                  |\n" .
+                "|                                                  |\n" .
+                "|                                                  |\n" .
+                "|                                                  |\n" .
+                "|                                                  |\n" .
+                "|                                                  |\n" .
+                "----------------------------------------------------\n";
+
+    $this->assertEquals($this->canvas->__toString(), $expected);
+
+  }
+
+  public function testSetContent()
+  {
+    $row = array_fill(0, self::WIDTH, 'c');
+    $newContent = array_fill(0, self::HEIGHT, $row);
+    $this->canvas->setContent($newContent);
+    $this->assertTrue(true);
   }
 }

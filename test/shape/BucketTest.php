@@ -9,7 +9,7 @@ class BucketTest extends PHPUnit_Framework_TestCase
   public function __construct()
   {
     parent::__construct();
-    $this->bucket = new Bucket();
+    $this->bucket = new Bucket(1, 2, 'o');
   }
 
   public function testNameSpace()
@@ -22,7 +22,7 @@ class BucketTest extends PHPUnit_Framework_TestCase
     $this->bucket->setX(1);
     $this->assertInternalType('int', $this->bucket->getX());
 
-    $this->bucket->setY(1);
+    $this->bucket->setY(2);
     $this->assertInternalType('int', $this->bucket->getY());
   }
 
@@ -34,6 +34,6 @@ class BucketTest extends PHPUnit_Framework_TestCase
 
   public function testGetDrawable()
   {
-    //$this->assertContainsOnlyInstancesOf('DrawingTool\Draw\IDrawable', [$this->bucket->getDrawable()]);
+    $this->assertContainsOnlyInstancesOf('DrawingTool\Draw\IDrawable', [$this->bucket->getDrawable()]);
   }
 }

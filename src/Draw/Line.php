@@ -12,17 +12,14 @@ use DrawingTool\Shape\Line as ShapeLine;
  */
 class Line implements IDrawable
 {
-
-  private $canvas;
   private $shape;
 
-  function __construct(ShapeLine $shape, Canvas &$canvas)
+  function __construct(ShapeLine $shape)
   {
     $this->shape = $shape;
-    $this->canvas = $canvas;
   }
 
-  public function draw()
+  public function draw(Canvas $canvas)
   {
     echo "drawing";
   }

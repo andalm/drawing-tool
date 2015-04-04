@@ -10,9 +10,9 @@ namespace DrawingTool\Shape;
 abstract class AbstractFill extends AbstractObject
 {
 
-  private $color;
-  private $x;
-  private $y;
+  protected $color;
+  protected $x;
+  protected $y;
 
   /**
    * Gets the value of color.

@@ -11,7 +11,7 @@ class BucketDrawTest extends PHPUnit_Framework_TestCase
   public function __construct()
   {
     parent::__construct();
-    $this->bucket = new Bucket(new FillBucket(), Canvas::get(2, 3));
+    $this->bucket = new Bucket(new FillBucket(1, 2, 'c'));
   }
 
   public function testDraw()

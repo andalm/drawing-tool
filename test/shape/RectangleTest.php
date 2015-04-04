@@ -9,7 +9,7 @@ class RectangleTest extends PHPUnit_Framework_TestCase
   public function __construct()
   {
     parent::__construct();
-    $this->rectangle = new Rectangle();
+    $this->rectangle = new Rectangle(1, 1, 1, 1, 'x');
   }
 
   public function testNameSpace()
@@ -40,6 +40,6 @@ class RectangleTest extends PHPUnit_Framework_TestCase
 
   public function testGetDrawable()
   {
-    //$this->assertContainsOnlyInstancesOf('DrawingTool\Draw\IDrawable', [$this->rectangle->getDrawable()]);
+    $this->assertContainsOnlyInstancesOf('DrawingTool\Draw\IDrawable', [$this->rectangle->getDrawable()]);
   }
 }
