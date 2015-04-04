@@ -2,6 +2,8 @@
 
 namespace DrawingTool\CanvasProvider;
 
+use DrawingTool\ParameterValidatorTrait as ValidatorTrait;
+
 /**
  * @author Adam
  * @version 1.0
@@ -10,23 +12,38 @@ namespace DrawingTool\CanvasProvider;
 class Canvas
 {
 
-	private $canvas;
-	private $content;
+	private static $canvas;
+	private $content = [];
+	private $width;
+	private $height;
+	const BORDER = '-';
 
-	function __destruct()
+	private function __construct($width, $height)
 	{
+		$this->width = $width;
+		$this->height = $height;
 	}
 
-	private function __construct()
+	public static function get($width, $height)
 	{
-	}
+		if(self::$canvas === null) {
+			ValidatorTrait::validateIntegerParameter($width);
+			ValidatorTrait::validateIntegerParameter($height);
 
-	public function get()
-	{
+			self::$canvas = new Canvas($width, $height);
+		}
+
+		return self::$canvas;
 	}
 
 	public function getContent()
 	{
+		return $this->content;
+	}
+
+	public function setContent(array $content)
+	{
+		$this->content = $content;
 	}
 
 	/**
@@ -38,12 +55,13 @@ class Canvas
 	{
 	}
 
-	/**
-	 *
-	 * @param content
-	 */
-	public function setContent(array $content)
+	protected function createContent()
 	{
+		echo "create content";
+	}
+
+	public function __toString() {
+		echo "Print";
 	}
 
 }

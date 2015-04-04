@@ -17,18 +17,29 @@ class LineTest extends PHPUnit_Framework_TestCase
     $this->assertContainsOnlyInstancesOf('DrawingTool\Shape\Line', [$this->line]);
   }
 
-  public function testSetParameters()
+  public function testIntegerParameters()
   {
-    $this->line->setBorder('_');
     $this->line->setX1(1);
+    $this->assertInternalType('int', $this->line->getX1());
+
     $this->line->setX2(1);
+    $this->assertInternalType('int', $this->line->getX2());
+
     $this->line->setY1(1);
+    $this->assertInternalType('int', $this->line->getY1());
+
     $this->line->setY2(1);
-    $this->assertTrue(true);
+    $this->assertInternalType('int', $this->line->getY2());
   }
 
-  public function testGetParameters()
+  public function testStringParameters()
   {
-    $this->assertInternalType('integer', $this->line->getX1());
+    $this->line->setBorder('_');
+    $this->assertInternalType('string', $this->line->getBorder());
+  }
+
+  public function testGetDrawable()
+  {
+    //$this->assertContainsOnlyInstancesOf('DrawingTool\Draw\IDrawable', [$this->line->getDrawable()]);
   }
 }
