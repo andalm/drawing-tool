@@ -2,6 +2,8 @@
 
 namespace DrawingTool\Shape;
 
+use DrawingTool\Draw\Bucket as DrawBucket;
+
 /**
  * @author Adam
  * @version 1.0
@@ -10,11 +12,15 @@ namespace DrawingTool\Shape;
 class Bucket extends AbstractFill
 {
 
-  function __construct()
+  public function __construct($x, $y, $color)
   {
+    $this->setX($x);
+    $this->setY($y);
+    $this->setColor($color);
   }
 
-  function __destruct()
+  public function getDrawable()
   {
+    return new DrawBucket($this);
   }
 }

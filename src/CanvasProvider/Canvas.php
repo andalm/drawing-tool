@@ -3,6 +3,7 @@
 namespace DrawingTool\CanvasProvider;
 
 use DrawingTool\ParameterValidatorTrait as ValidatorTrait;
+use DrawingTool\Draw\IDrawable;
 
 /**
  * @author Adam
@@ -13,15 +14,19 @@ class Canvas
 {
 
   private static $canvas;
-  private $content = [];
+  private $content;
   private $width;
   private $height;
-  const BORDER = '-';
+  const HORIZONTAL_BORDER = '-';
+  const VERTICAL_BORDER = '|';
+  const BACKGROUND = ' ';
+  const EXTRA_FOR_BORDER = 2;
 
   private function __construct($width, $height)
   {
     $this->width = $width;
     $this->height = $height;
+    $this->createContent();
   }
 
   public static function get($width, $height)
@@ -43,25 +48,85 @@ class Canvas
 
   public function setContent(array $content)
   {
+    if(count($content) != $this->height ||
+       count($content[0]) != $this->width) {
+      throw new \InvalidArgumentException(
+        'The new content have other size '
+      );
+    }
     $this->content = $content;
   }
 
   /**
-   *
    * @param x
    * @param y
+   * @return string pixel of canvas
    */
-  public function getContentByPoint(int $x, int $y)
+  public function getContentByPixel($x, $y)
   {
+    ValidatorTrait::validateIntegerParameter($x);
+    ValidatorTrait::validateIntegerParameter($y);
+
+    if($this->width < $x || $this->height < $y) {
+      throw new \InvalidArgumentException(
+        'The point not can be out the canvas '.
+        'The point was: x = '. $x . ' and y = ' . $y
+      );
+    }
+
+    return $this->content[$y][$x];
+  }
+
+  public function addDraw(IDrawable $shape)
+  {
+    $this->setContent($shape->draw($this));
   }
 
   protected function createContent()
   {
-    echo "create content";
+    //Create the background canvas
+    $row = array_fill(0, $this->width, self::BACKGROUND);
+    //add background to content
+    $this->content = array_fill(0, $this->height, $row);
   }
 
-  public function __toString() {
-    echo "Print";
+  /**
+   * Gets the value of width.
+   *
+   * @return integer
+   */
+  public function getWidth()
+  {
+    return $this->width;
   }
 
+  /**
+   * Gets the value of height.
+   *
+   * @return integer
+   */
+  public function getHeight()
+  {
+    return $this->height;
+  }
+
+  public function __toString()
+  {
+    $string = '';
+    //create up and down borders
+    $upDownBorder = str_repeat(self::HORIZONTAL_BORDER, $this->width + self::EXTRA_FOR_BORDER);
+
+    //Add up border
+    $string .= $upDownBorder . "\n";
+
+    foreach($this->content as $row) {
+      $string .=
+        self::VERTICAL_BORDER . implode("", $row) . self::VERTICAL_BORDER . "\n";
+    }
+
+    //Add down border
+    $string .= $upDownBorder . "\n";
+
+    return $string;
+  }
 }

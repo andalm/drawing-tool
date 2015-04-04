@@ -12,16 +12,14 @@ use DrawingTool\Shape\Rectangle as ShapeRectangle;
  */
 class Rectangle implements IDrawable
 {
-  private $canvas;
   private $shape;
 
-  function __construct(ShapeRectangle $shape, Canvas &$canvas)
+  function __construct(ShapeRectangle $shape)
   {
     $this->shape = $shape;
-    $this->canvas = $canvas;
   }
 
-  public function draw()
+  public function draw(Canvas $canvas)
   {
     echo "drawing";
   }

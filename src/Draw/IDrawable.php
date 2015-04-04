@@ -11,7 +11,9 @@ use DrawingTool\CanvasProvider\Canvas;
  */
 interface IDrawable
 {
-
-  public function draw();
-
+  /**
+   * @param  Canvas $canvas
+   * @return array content
+   */
+  public function draw(Canvas $canvas);
 }

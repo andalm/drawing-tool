@@ -9,7 +9,7 @@ class LineTest extends PHPUnit_Framework_TestCase
   public function __construct()
   {
     parent::__construct();
-    $this->line = new Line();
+    $this->line = new Line(1, 1, 1, 1, 'x');
   }
 
   public function testNameSpace()
@@ -40,6 +40,6 @@ class LineTest extends PHPUnit_Framework_TestCase
 
   public function testGetDrawable()
   {
-    //$this->assertContainsOnlyInstancesOf('DrawingTool\Draw\IDrawable', [$this->line->getDrawable()]);
+    $this->assertContainsOnlyInstancesOf('DrawingTool\Draw\IDrawable', [$this->line->getDrawable()]);
   }
 }

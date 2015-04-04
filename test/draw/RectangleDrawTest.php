@@ -11,7 +11,7 @@ class RectangleDrawTest extends PHPUnit_Framework_TestCase
   public function __construct()
   {
     parent::__construct();
-    $this->rectangle = new Rectangle(new ShapeRectangle(), Canvas::get(2, 3));
+    $this->rectangle = new Rectangle(new ShapeRectangle(1, 1, 1, 1, 'x'));
   }
 
   public function testDraw()

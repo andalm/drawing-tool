@@ -2,6 +2,8 @@
 
 namespace DrawingTool\Shape;
 
+use DrawingTool\Draw\Rectangle as DrawRectangle;
+
 /**
  * @author Adam
  * @version 1.0
@@ -10,11 +12,17 @@ namespace DrawingTool\Shape;
 class Rectangle extends AbstractShape
 {
 
-  function __construct()
+  public function __construct($x1, $y1, $x2, $y2, $border)
   {
+    $this->setX1($x1);
+    $this->setY1($y1);
+    $this->setX2($x2);
+    $this->setY2($y2);
+    $this->setBorder($border);
   }
 
-  function __destruct()
+  public function getDrawable()
   {
+    return new DrawRectangle($this);
   }
 }

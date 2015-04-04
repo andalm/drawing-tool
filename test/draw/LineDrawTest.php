@@ -11,7 +11,7 @@ class LineDrawTest extends PHPUnit_Framework_TestCase
   public function __construct()
   {
     parent::__construct();
-    $this->line = new Line(new ShapeLine(), Canvas::get(2, 3));
+    $this->line = new Line(new ShapeLine(1, 1, 1, 1, 'x'));
   }
 
   public function testDraw()

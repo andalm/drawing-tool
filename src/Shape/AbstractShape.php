@@ -10,11 +10,11 @@ namespace DrawingTool\Shape;
 abstract class AbstractShape extends AbstractObject
 {
 
-  private $border;
-  private $x1;
-  private $x2;
-  private $y1;
-  private $y2;
+  protected $border;
+  protected $x1;
+  protected $x2;
+  protected $y1;
+  protected $y2;
 
   /**
    * Gets the value of border.
