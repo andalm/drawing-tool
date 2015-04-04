@@ -2,9 +2,7 @@
 
 namespace DrawingTool\Draw;
 
-
-
-use \CanvasProvider;
+use DrawingTool\CanvasProvider\Canvas;
 
 /**
  * @author Adam
@@ -14,12 +12,6 @@ use \CanvasProvider;
 interface IDrawable
 {
 
-	public function draw();
-
-	/**
-	 *
-	 * @param &$canvas
-	 */
-	public function setCanvas(Canvas &$canvas);
+  public function draw();
 
 }

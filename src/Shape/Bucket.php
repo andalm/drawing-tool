@@ -7,14 +7,14 @@ namespace DrawingTool\Shape;
  * @version 1.0
  * @created 03-abr.-2015 6:20:51 p. m.
  */
-class Bucket extends \AbstractFill
+class Bucket extends AbstractFill
 {
 
-	function __construct()
-	{
-	}
+  function __construct()
+  {
+  }
 
-	function __destruct()
-	{
-	}
+  function __destruct()
+  {
+  }
 }

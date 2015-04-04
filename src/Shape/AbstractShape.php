@@ -51,7 +51,7 @@ abstract class AbstractShape extends AbstractObject
   /**
    * Sets the value of x1.
    *
-   * @param mixed $x1 the x1
+   * @param mixed $x1
    */
   public function setX1($x1)
   {
