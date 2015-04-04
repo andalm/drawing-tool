@@ -10,11 +10,11 @@ namespace DrawingTool\Shape;
 class Line extends AbstractShape
 {
 
-	function __construct()
-	{
-	}
+  function __construct()
+  {
+  }
 
-	function __destruct()
-	{
-	}
+  function __destruct()
+  {
+  }
 }

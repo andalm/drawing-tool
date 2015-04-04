@@ -12,10 +12,10 @@ use DrawingTool\Exception\UnsupportedMethodException;
 abstract class AbstractObject
 {
 
-	public function getDrawable()
-	{
+  public function getDrawable()
+  {
     throw new UnsupportedMethodException();
-	}
+  }
 
   protected static function validateIntegerParameter($paramter){
     if(!is_integer($paramter) || $paramter <= 0)

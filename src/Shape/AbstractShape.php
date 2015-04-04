@@ -10,11 +10,11 @@ namespace DrawingTool\Shape;
 abstract class AbstractShape extends AbstractObject
 {
 
-	private $border;
-	private $x1;
-	private $x2;
-	private $y1;
-	private $y2;
+  private $border;
+  private $x1;
+  private $x2;
+  private $y1;
+  private $y2;
 
   /**
    * Gets the value of border.
@@ -34,7 +34,7 @@ abstract class AbstractShape extends AbstractObject
    */
   public function setBorder($border)
   {
-  	parent::validateStringParameter($border);
+    parent::validateStringParameter($border);
     $this->border = $border;
   }
 
@@ -55,7 +55,7 @@ abstract class AbstractShape extends AbstractObject
    */
   public function setX1($x1)
   {
-  	parent::validateIntegerParameter($x1);
+    parent::validateIntegerParameter($x1);
     $this->x1 = $x1;
   }
 
@@ -76,7 +76,7 @@ abstract class AbstractShape extends AbstractObject
    */
   public function setX2($x2)
   {
-  	parent::validateIntegerParameter($x2);
+    parent::validateIntegerParameter($x2);
     $this->x2 = $x2;
   }
 
@@ -97,7 +97,7 @@ abstract class AbstractShape extends AbstractObject
    */
   public function setY1($y1)
   {
-  	parent::validateIntegerParameter($y1);
+    parent::validateIntegerParameter($y1);
     $this->y1 = $y1;
   }
 
@@ -118,7 +118,7 @@ abstract class AbstractShape extends AbstractObject
    */
   public function setY2($y2)
   {
-  	parent::validateIntegerParameter($y2);
+    parent::validateIntegerParameter($y2);
     $this->y2 = $y2;
   }
 }
