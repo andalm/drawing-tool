@@ -1,0 +1,31 @@
+<phpunit
+  backupGlobals="true"
+  backupStaticAttributes="false"
+  bootstrap="vendor/autoload.php"
+  cacheTokens="false"
+  colors="true"
+  convertErrorsToExceptions="true"
+  convertNoticesToExceptions="true"
+  convertWarningsToExceptions="true"
+  forceCoversAnnotation="false"
+  mapTestClassNameToCoveredClassName="false"
+  processIsolation="false"
+  stopOnError="false"
+  stopOnFailure="false"
+  stopOnIncomplete="false"
+  stopOnSkipped="false"
+>
+  <testsuites>
+    <testsuite name="shape">
+      <directory>test/shape</directory>
+    </testsuite>
+
+    <testsuite name="draw">
+      <directory>test/draw</directory>
+    </testsuite>
+
+    <testsuite name="canvasprovider">
+      <directory>test/canvasProvider</directory>
+    </testsuite>
+  </testsuites>
+</phpunit>
