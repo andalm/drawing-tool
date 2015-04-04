@@ -2,7 +2,8 @@
   "name": "drawingtool",
   "type": "library",
   "description": "",
-  "keywords": [""],
+  "keywords": ["I'm writing a simple console version of a drawing program"],
+  "homepage" : "https://github.com/andalm/drawing-tool.git",
   "license": "Apache-2.0",
   "authors": [{
     "name": "Andrés Aldana M",
