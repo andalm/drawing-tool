@@ -15,5 +15,5 @@ interface IDrawable
    * @param  Canvas $canvas
    * @return array content
    */
-  public function draw(Canvas $canvas);
+  public function draw(Canvas &$canvas);
 }

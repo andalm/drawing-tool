@@ -19,11 +19,6 @@ class CanvasTest extends PHPUnit_Framework_TestCase
     $this->assertContainsOnlyInstancesOf('DrawingTool\CanvasProvider\Canvas', [$this->canvas]);
   }
 
-  public function testGetContent()
-  {
-    $this->assertInternalType('array', $this->canvas->getContent());
-  }
-
   public function testGetContentByPoint()
   {
     $this->assertEquals($this->canvas->getContentByPixel(10,5), ' ');
@@ -48,9 +43,14 @@ class CanvasTest extends PHPUnit_Framework_TestCase
 
   }
 
+  public function testGetContent()
+  {
+    $this->assertInternalType('array', $this->canvas->getContent());
+  }
+
   public function testSetContent()
   {
-    $row = array_fill(0, self::WIDTH, 'c');
+    $row = array_fill(0, self::WIDTH, ' ');
     $newContent = array_fill(0, self::HEIGHT, $row);
     $this->canvas->setContent($newContent);
     $this->assertTrue(true);

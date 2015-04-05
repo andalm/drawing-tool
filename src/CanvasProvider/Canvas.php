@@ -35,26 +35,26 @@ class Canvas
       ValidatorTrait::validateIntegerParameter($width);
       ValidatorTrait::validateIntegerParameter($height);
 
+      if($width == 0 || $height == 0) {
+        throw new \InvalidArgumentException(
+          'The size not can be 0'
+        );
+      }
+
       self::$canvas = new Canvas($width, $height);
     }
 
     return self::$canvas;
   }
 
-  public function getContent()
+  public function plot($x, $y, $pixel)
   {
-    return $this->content;
-  }
-
-  public function setContent(array $content)
-  {
-    if(count($content) != $this->height ||
-       count($content[0]) != $this->width) {
-      throw new \InvalidArgumentException(
-        'The new content have other size '
-      );
+    ValidatorTrait::validateIntegerParameter($x);
+    ValidatorTrait::validateIntegerParameter($y);
+    ValidatorTrait::validateStringParameter($pixel);
+    if($y < $this->height && $x < $this->width) {
+      $this->content[$y][$x] = $pixel;
     }
-    $this->content = $content;
   }
 
   /**
@@ -66,20 +66,11 @@ class Canvas
   {
     ValidatorTrait::validateIntegerParameter($x);
     ValidatorTrait::validateIntegerParameter($y);
-
-    if($this->width < $x || $this->height < $y) {
-      throw new \InvalidArgumentException(
-        'The point not can be out the canvas '.
-        'The point was: x = '. $x . ' and y = ' . $y
-      );
+    if($y < $this->height && $x < $this->width) {
+      return $this->content[$y][$x];
     }
 
-    return $this->content[$y][$x];
-  }
-
-  public function addDraw(IDrawable $shape)
-  {
-    $this->setContent($shape->draw($this));
+    return null;
   }
 
   protected function createContent()
@@ -110,23 +101,38 @@ class Canvas
     return $this->height;
   }
 
+  public function getContent()
+  {
+    return $this->content;
+  }
+
+  public function setContent(array $content)
+  {
+    if(count($content) != $this->height ||
+       count($content[0]) != $this->width) {
+      throw new \InvalidArgumentException(
+        'The new content have other size '
+      );
+    }
+    $this->content = $content;
+  }
+
   public function __toString()
   {
     $string = '';
-    //create up and down borders
-    $upDownBorder = str_repeat(self::HORIZONTAL_BORDER, $this->width + self::EXTRA_FOR_BORDER);
-
-    //Add up border
-    $string .= $upDownBorder . "\n";
+    //create top and bottom borders
+    $topBottomBorder =
+      str_repeat(self::HORIZONTAL_BORDER, $this->width + self::EXTRA_FOR_BORDER) . "\n";
+    //Add top border
+    $string .= $topBottomBorder;
 
     foreach($this->content as $row) {
       $string .=
         self::VERTICAL_BORDER . implode("", $row) . self::VERTICAL_BORDER . "\n";
     }
 
-    //Add down border
-    $string .= $upDownBorder . "\n";
-
+    //Add bottom border
+    $string .= $topBottomBorder;
     return $string;
   }
 }

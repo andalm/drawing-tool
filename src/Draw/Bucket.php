@@ -19,8 +19,38 @@ class Bucket implements IDrawable
     $this->fill = $fill;
   }
 
-  public function draw(Canvas $canvas)
+  public function draw(Canvas &$canvas)
   {
-    echo "drawing";
+    $x        = $this->fill->getX();
+    $y        = $this->fill->getY();
+    $newColor = $this->fill->getColor();
+    $oldColor = $canvas->getContentByPixel($x, $y);
+
+    self::floodFill($x, $y, $newColor, $oldColor, $canvas);
+  }
+
+  /**
+   * Implementing flood fill algorithm
+   * @param  integer $x
+   * @param  integer $y
+   * @param  string $newColor
+   * @param  string $oldColor
+   * @param  Canvas &$canvas
+   */
+  protected static function floodFill($x, $y, $newColor, $oldColor, Canvas &$canvas)
+  {
+    if($canvas->getContentByPixel($x, $y) != null &&
+      $canvas->getContentByPixel($x, $y) == $oldColor) {
+
+      $canvas->plot($x, $y, $newColor);
+      if($x - 1 >= 0) {
+        self::floodFill($x - 1, $y, $newColor, $oldColor, $canvas);
+      }
+      self::floodFill($x + 1, $y, $newColor, $oldColor, $canvas);
+      if($y - 1 >= 0){
+        self::floodFill($x, $y - 1, $newColor, $oldColor, $canvas);
+      }
+      self::floodFill($x, $y + 1, $newColor, $oldColor, $canvas);
+    }
   }
 }

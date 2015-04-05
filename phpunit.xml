@@ -16,16 +16,16 @@
   stopOnSkipped="false"
 >
   <testsuites>
+    <testsuite name="canvasprovider">
+      <directory>test/canvasProvider</directory>
+    </testsuite>
+
     <testsuite name="shape">
       <directory>test/shape</directory>
     </testsuite>
 
     <testsuite name="draw">
       <directory>test/draw</directory>
-    </testsuite>
-
-    <testsuite name="canvasprovider">
-      <directory>test/canvasProvider</directory>
     </testsuite>
   </testsuites>
 </phpunit>
