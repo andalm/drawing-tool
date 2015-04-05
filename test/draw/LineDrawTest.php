@@ -11,11 +11,26 @@ class LineDrawTest extends PHPUnit_Framework_TestCase
   public function __construct()
   {
     parent::__construct();
-    $this->line = new Line(new ShapeLine(1, 1, 1, 1, 'x'));
+    $this->line = new Line(new ShapeLine(0, 0, 55, 30, 'x'));
   }
 
   public function testDraw()
   {
-    //$this->line->draw();
+    $canvas = Canvas::get(50, 10);
+    $this->line->draw($canvas);
+    $expected = "----------------------------------------------------\n" .
+                "|xx                                                |\n" .
+                "|  xx                                              |\n" .
+                "|    xx                                            |\n" .
+                "|      xx                                          |\n" .
+                "|        xx                                        |\n" .
+                "|          x                           xxxxxxxxxx  |\n" .
+                "|           xx                         xoooooooox  |\n" .
+                "|             xx                       xoooooooox  |\n" .
+                "|               xx                     xxxxxxxxxx  |\n" .
+                "|                 xx                               |\n" .
+                "----------------------------------------------------\n";
+
+    $this->assertEquals($canvas->__toString(), $expected);
   }
 }
