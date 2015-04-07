@@ -39,18 +39,13 @@ class Bucket implements IDrawable
    */
   protected static function floodFill($x, $y, $newColor, $oldColor, Canvas &$canvas)
   {
-    if($canvas->getContentByPixel($x, $y) != null &&
-      $canvas->getContentByPixel($x, $y) == $oldColor) {
-
+    $pixel = $canvas->getContentByPixel($x, $y);
+    if($pixel != null && $pixel == $oldColor) {
       $canvas->plot($x, $y, $newColor);
-      if($x - 1 >= 0) {
-        self::floodFill($x - 1, $y, $newColor, $oldColor, $canvas);
-      }
-      self::floodFill($x + 1, $y, $newColor, $oldColor, $canvas);
-      if($y - 1 >= 0){
-        self::floodFill($x, $y - 1, $newColor, $oldColor, $canvas);
-      }
+      self::floodFill($x, $y - 1, $newColor, $oldColor, $canvas);
       self::floodFill($x, $y + 1, $newColor, $oldColor, $canvas);
+      self::floodFill($x + 1, $y, $newColor, $oldColor, $canvas);
+      self::floodFill($x - 1, $y, $newColor, $oldColor, $canvas);
     }
   }
 }
