@@ -27,5 +27,9 @@
     <testsuite name="draw">
       <directory>test/draw</directory>
     </testsuite>
+
+    <testsuite name="draw">
+      <directory>test/file</directory>
+    </testsuite>
   </testsuites>
 </phpunit>

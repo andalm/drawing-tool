@@ -10,17 +10,13 @@ use DrawingTool\Draw\IDrawable;
  * @version 1.0
  * @created 03-abr.-2015 6:20:51 p. m.
  */
-class Canvas
+class Canvas implements ICanvas
 {
 
   private static $canvas;
   private $content;
   private $width;
   private $height;
-  const HORIZONTAL_BORDER = '-';
-  const VERTICAL_BORDER = '|';
-  const BACKGROUND = ' ';
-  const EXTRA_FOR_BORDER = 2;
 
   private function __construct($width, $height)
   {
