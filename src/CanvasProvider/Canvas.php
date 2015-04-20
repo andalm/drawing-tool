@@ -45,10 +45,8 @@ class Canvas implements ICanvas
 
   public function plot($x, $y, $pixel)
   {
-    ValidatorTrait::validateIntegerParameter($x);
-    ValidatorTrait::validateIntegerParameter($y);
-    ValidatorTrait::validateStringParameter($pixel);
-    if($y < $this->height && $x < $this->width) {
+    if(($y >= 0 && $y < $this->height) &&
+       ($x >= 0 && $x < $this->width)) {
       $this->content[$y][$x] = $pixel;
     }
   }
@@ -60,9 +58,8 @@ class Canvas implements ICanvas
    */
   public function getContentByPixel($x, $y)
   {
-    ValidatorTrait::validateIntegerParameter($x);
-    ValidatorTrait::validateIntegerParameter($y);
-    if($y < $this->height && $x < $this->width) {
+    if(($y >= 0 && $y < $this->height) &&
+       ($x >= 0 && $x < $this->width)) {
       return $this->content[$y][$x];
     }
 
