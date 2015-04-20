@@ -2,8 +2,6 @@
 
 namespace DrawingTool;
 
-use DrawingTool\CanvasProvider\Canvas;
-
 /**
  * @author Adam
  * @version 1.0
