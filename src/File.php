@@ -41,6 +41,8 @@ class File
 
   public static function delete()
   {
-    return unlink(self::$dir . self::$fileName);
+    if(file_exists(self::$dir . self::$fileName)) {
+      return unlink(self::$dir . self::$fileName);
+    }
   }
 }
