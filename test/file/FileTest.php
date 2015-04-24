@@ -28,6 +28,6 @@ class FileTest extends PHPUnit_Framework_TestCase
 
   public function testDeleteFile()
   {
-    $this->assertTrue(File::deleteFile());
+    $this->assertTrue(File::delete());
   }
 }

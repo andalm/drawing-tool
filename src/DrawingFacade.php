@@ -2,7 +2,11 @@
 
 namespace DrawingTool;
 
-use CanvasProvider;
+use DrawingTool\CanvasProvider\Canvas;
+use DrawingTool\File;
+use DrawingTool\Shape\Line;
+use DrawingTool\Shape\Rectangle;
+use DrawingTool\Shape\Bucket;
 
 /**
  * @author Adam
@@ -20,8 +24,12 @@ class DrawingFacade
    * @param h
    * @param border
    */
-  public function createCanvas(int $w, int $h, string $border)
+  public function createCanvas($w, $h)
   {
+    $this->loadFile();
+    $this->canvas = Canvas::get($w, $h);
+    $this->printCanvas();
+    $this->saveFile();
   }
 
   /**
@@ -32,8 +40,17 @@ class DrawingFacade
    * @param y2
    * @param border
    */
-  public function drawLine(int $x1, int $y1, int $x2, int $y2, string $border)
+  public function drawLine($x1, $y1, $x2, $y2, $border)
   {
+    $this->loadFile();
+
+    if($this->canvas != null) {
+      $line = new Line($x1, $y1, $x2, $y2, $border);
+      $line->getDrawable()->draw($this->canvas);
+      $this->printCanvas();
+    }
+
+    $this->saveFile();
   }
 
   /**
@@ -44,8 +61,17 @@ class DrawingFacade
    * @param y2
    * @param border
    */
-  public function drawRectangle(int $x1, int $y1, int $x2, int $y2, string $border)
+  public function drawRectangle($x1, $y1, $x2, $y2, $border)
   {
+    $this->loadFile();
+
+    if($this->canvas != null) {
+      $rectangle = new Rectangle($x1, $y1, $x2, $y2, $border);
+      $rectangle->getDrawable()->draw($this->canvas);
+      $this->printCanvas();
+    }
+
+    $this->saveFile();
   }
 
   /**
@@ -54,16 +80,52 @@ class DrawingFacade
    * @param y
    * @param color
    */
-  public function fillArea(int $x, int $y, string $color)
+  public function fillArea($x, $y, $color)
   {
+    $this->loadFile();
+
+    if($this->canvas != null) {
+      $fill = new Bucket($x, $y, $color);
+      $fill->getDrawable()->draw($this->canvas);
+      $this->printCanvas();
+    }
+
+    $this->saveFile();
+  }
+
+  public function quit()
+  {
+    File::delete();
   }
 
   private function loadFile()
   {
+    $fileContent = File::getContent();
+
+    if($fileContent != null) {
+      $this->canvas = Canvas::get($fileContent['width'], $fileContent['height']);
+      $this->canvas->setContent($fileContent['content']);
+    }
   }
 
   private function saveFile()
   {
+    if($this->canvas != null) {
+      $fileContent = [
+        'width' => $this->canvas->getWidth(),
+        'height' => $this->canvas->getHeight(),
+        'content' => $this->canvas->getContent()
+      ];
+
+      File::setContent($fileContent);
+    }
+  }
+
+  private function printCanvas()
+  {
+    if($this->canvas != null) {
+      echo $this->canvas;
+    }
   }
 
 }
