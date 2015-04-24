@@ -39,7 +39,7 @@ class File
     return file_put_contents(self::$dir . self::$fileName, json_encode($fileContent));
   }
 
-  public static function deleteFile()
+  public static function delete()
   {
     return unlink(self::$dir . self::$fileName);
   }
